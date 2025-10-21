@@ -1,0 +1,57 @@
+Santa Fe             Rosario                   Islas Malvinas                 SAAR ROS
+Corrientes           Corrientes                Dr. Piragine Niveyro           SARC CNQ
+Cordoba              Rio Cuarto                Area Material Rio Cuarto       SAOC RCU
+Buenos Aires         Santa Teresita            Santa Teresita                 SAZL STT
+Santiago del Estero  Rio Hondo                 Termas de Rio Hondo            SANH RHD
+Catamarca            Catamarca                 Cnel. Felipe Varela            SANC CTC
+Chaco                Resistencia               Jose de San Martin             SARE RES
+Buenos Aires         Ezeiza                    Ministro Pistarini             SAEZ EZE
+Salta                Salta                     Gral. Guemes                   SASA SLA
+Chubut               Trelew                    Alte. Marcos A. Zar            SAVT REL
+Cordoba	             Cordoba                   A.Taravella/Pajas Blancas      SACO COR
+Mendoza              San Rafael                Santiago Germano               SAMR AFA
+Neuquen              Neuquen                   Presidente Peron               SAZN NQN
+Corrientes           Goya                      Diego N. Diaz Colodrero        SATG OYA
+Buenos Aires         Bahia Blanca              Comandante Espora              SAZB BHI
+Corrientes           Paso de los Libres        Paso de los Libres             SARL AOL
+Buenos Aires         La Plata                  La Plata                       SADL LPG
+Entre Rios           Parana                    Gral. Justo J.de Urquiza       SAAP PRA
+Buenos Aires         San Fernando              San Fernando                   SADF FDO
+Formosa              Formosa                   El Pucu                        SARF FMA
+Jujuy                San Salvador de Jujuy     Gob. Horacio Guzman            SASJ JUJ
+San Luis             San Luis                  Brig. May. Cesar Raul Ojeda    SAOU LUQ
+La Pampa             Santa Rosa                Santa Rosa                     SAZR RSA
+Buenos Aires         Junin                     Junin                          SAAJ JNI
+Tierra del Fuego     Ushuaia                   Malvinas Argentinas            SAWH USH
+La Rioja             La Rioja                  Cap. Vicente A. Almonacid      SANL IRJ
+Chubut               Comodoro Rivadavia        Intern.Gral. E. Mosconi        SAVC CRD
+Mendoza              Mendoza                   Gob. Gabrielli/El Plumerillo   SAME MDZ
+Misiones             Posadas                   Lib. Gral. J. de San Martin    SARP PSS
+Buenos Aires         Tandil                    Tandil                         SAZT TDL
+Santiago del Estero  Sgo. del Estero           Com. De La Paz Aragones        SANE SDE
+Neuquen              Cutral-Co                 Cutral-Co                      SAZW CUT
+Chubut               Esquel                    Brig. Gral. Antonio Parodi     SAVE EQS
+Neuquen              San Martin de los Andes   Aviador .Campos/Chapelco       SAZY CPC
+Rio Negro            Bariloche                 Tte. Luis Candelaria           SAZS BRC
+Santa Cruz           El Calafate               Comandante Armando Tola        SAWC FTE
+Rio Negro            Viedma                    Gobernador Castello            SAVV VDM
+Tucuman              San Miguel de Tucuman     Tte. Benjamin Matienzo         SANT TUC
+Buenos Aires         Necochea                  Necochea                       SAZO NEC
+Entre Rios           Concordia                 Comodoro Pierrestegui          SAAC COC
+Salta                Tartagal                  Gral. E. Mosconi               SAST TTG
+San Juan             San Juan                  Domingo Faustino Sarmiento     SANU UAQ
+La Pampa             General Pico              General Pico                   SAZG GPO
+San Luis             Merlo                     Valle del Conlara              SAOS RLO
+Misiones             Puerto Iguazu             My. Carlos E. Krause           SARI IGR
+Tierra del Fuego     Rio Grande                Gob. Ramon Trejo Noel          SAWE RGA
+San Luis             Villa Reynolds            Villa Reynolds                 SAOR VME
+Buenos Aires         Villa Gesell              Villa Gesell                   SAVG VGL
+Santa Cruz           El Turbio                 El Turbio/28 de Noviembre      SAWT RYO
+Mendoza              Malargue                  Cdro. Ricardo Salomon          SAMM LGS
+Buenos Aires         C.A.B.A.                  Jorge Newbery                  SABE AEP
+Rio Negro            General Roca              Arturo Humberto Illia          SAHR GNR
+Santa Cruz           Rio Gallegos              Pil. Civ. Norberto Fernandez   SAWG RGL
+Santa Fe             Reconquista               Daniel Jukic                   SATR RCQ
+Buenos Aires         Mar del Plata             Astor Piazzolla                SAZM MDQ
+Santa Fe             Santa Fe                  Sauce Viejo                    SAAV SFN
+Chubut               Puerto Madryn             El Tehuelche                   SAVY PMY
