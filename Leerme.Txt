@@ -1,0 +1,4 @@
+Los archivos de texto deben ser convertidos a binario.
+Para ello, se deben crear tres programas de conversón para
+cada archivo a convertir.
+Estos archivos NO deberán ser entregados en el TP2.
