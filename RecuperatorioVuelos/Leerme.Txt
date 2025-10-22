@@ -1,0 +1,14 @@
+Antes de commpilar y ejecutar el programa de consultas de vuelos
+se deberá actualizar del archivo Vuelos.Txt la fecha al mismo
+día que la ejecución.
+Por ejemplo si la fecha de los vuelos es del 20250916 y se
+desea ejecutar el día 23 entonces todos los vuelos deben
+cambiarse la fecha a 20250923.
+Como cambiar la fecha
+  Desde el CodeBlocks abrir el archivo Vuelos.Txt
+modificar la fecha de la primer líneas,
+copiar esta nueva fecha,
+Seleccionar desde la segunda línea hasta la última línea
+pero manteniendo apretada la tecla ALT, luego con el mouse
+seleccionar toda la fecha hasta la última línea,
+finalmente pegar sobre lo seleccionado.

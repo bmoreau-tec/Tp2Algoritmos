@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Build with Borland",
+		"type": "shell",
+		"command": "bcc32",
+		"args": [
+		  "${file}"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": [],
+		"detail": "Compile using Borland C++"
+	  }
+	]
+  }
+  
