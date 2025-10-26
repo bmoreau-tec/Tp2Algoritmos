@@ -18,11 +18,9 @@ using namespace std;
 
 const int CANT_AEROP = 57;
 struct sAerop {
-    str20 provincia;
-    str25 ciudad;
-    str30 nomAerop;
-    str4 codOACI;
-    str3 codIATA;
+    str3 codIATA;        // Código IATA del aeropuerto
+    int ubicacion;       // Ubicación en el archivo original
+    void* ptr;       // Campo NULL (puntero)
 };
 
 struct sVue {
@@ -34,6 +32,14 @@ struct sVue {
     str11 marNave;
     int fecSale;
     short horaSale;
+};
+
+struct sAeropCompleto {  // Struct auxiliar para leer el archivo completo
+    str20 provincia;
+    str25 ciudad;
+    str30 nomAerop;
+    str4 codOACI;
+    str3 codIATA;
 };
 
 struct tinfo;
@@ -77,11 +83,12 @@ string replicate(char car, short n) {
 
 char * SubCad(char cad[], short dsd, short hst) {
   static char sCad[4];
+  short j;
 
   strcpy(sCad,"");
   for (short i = dsd, j = 0; i <= hst; i++,j++)
     sCad[j] = cad[i];
-  sCad[hst + 1] = '\0';
+  sCad[j] = '\0';
   return sCad;
 } // SubCad
 
@@ -89,23 +96,23 @@ char * SubCad(char cad[], short dsd, short hst) {
 
 
 void IntCmb(sAerop &elem1, sAerop &elem2) {
-	sAerop aux = elem1;
+    sAerop aux = elem1;
 
-	elem1 = elem2;
-	elem2 = aux;
+    elem1 = elem2;
+    elem2 = aux;
 } // IntCmb
 
 void OrdxBur(tvrAerop vrI, short Card) {
   bool  ordenado;
   short k = 0,
-	      i;
+          i;
 
   do {
     ordenado = true;
     k++;
     for (i = 0; i < Card - k; i++)
-	  if (strcmp(vrI[i].codIATA,vrI[i+1].codIATA) > 0) {
-		  IntCmb(vrI[i],vrI[i+1]);
+      if (strcmp(vrI[i].codIATA,vrI[i+1].codIATA) > 0) {
+          IntCmb(vrI[i],vrI[i+1]);
       ordenado = false;
     }
   } while (!ordenado);
@@ -133,8 +140,20 @@ void Cerrar(FILE* &archivoAeropuertos, FILE* &archivoVuelos, FILE* &archivoConsu
 }
 
 void ProcAeropuertos(FILE* &archivoAeropuertos, tvrAerop vrAerop) {
-    fread(vrAerop, sizeof(sAerop), CANT_AEROP, archivoAeropuertos);
-    OrdxBur(vrAerop, CANT_AEROP); // EVIDENTEMENTE SAEROP ESTÁ MAL. TIENE QUE TENER OTROS CAMPOS
+    sAeropCompleto tempAerop;
+    int contador = 0;
+    
+    // Leer cada registro completo del archivo
+    while (fread(&tempAerop, sizeof(sAeropCompleto), 1, archivoAeropuertos) == 1 && contador < CANT_AEROP) {
+        // Extraer solo codIATA, ubicación y NULL
+        strcpy(vrAerop[contador].codIATA, tempAerop.codIATA);
+        vrAerop[contador].ubicacion = contador;  // Posición en el archivo (0-based)
+        vrAerop[contador].ptr = NULL;     // Campo NULL
+        contador++;
+    }
+    
+    // Ordenar por codIATA
+    OrdxBur(vrAerop, contador);
 }
 
 void ProcVuelos() {
@@ -160,7 +179,6 @@ void test(){
 }
 
 int main() {
-    test();
     FILE* archivoAeropuertos = fopen("aeropuertos.dat", "rb");
     FILE* archivoVuelos = fopen("vuelos.dat", "rb");
     FILE* archivoConsultas = fopen("consultas.dat", "rb");
@@ -168,6 +186,7 @@ int main() {
 
     Abrir (archivoAeropuertos, archivoVuelos, archivoConsultas);
     ProcAeropuertos (archivoAeropuertos, vrAerop);
+
     ProcVuelos (  );
     ConsultasVuelos (  );
     ListVueAeropSld ( );
