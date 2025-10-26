@@ -42,9 +42,17 @@ struct sAeropCompleto {  // Struct auxiliar para leer el archivo completo
     str3 codIATA;
 };
 
-struct tinfo;
-struct sNodo;
-struct sTblAerop;
+struct tinfo {
+    str3 nroVue;        // Número de vuelo
+    int posArchivo;     // Posición en el archivo de vuelos
+};
+
+struct sNodo {
+    tinfo info;
+    sNodo* sig;
+};
+
+typedef sNodo* tLista;
 typedef sAerop tvrAerop [CANT_AEROP]; 
 //typedef struct sNodo* _____________;
 
@@ -156,9 +164,70 @@ void ProcAeropuertos(FILE* &archivoAeropuertos, tvrAerop vrAerop) {
     OrdxBur(vrAerop, contador);
 }
 
-void ProcVuelos() {
-    //
+void InsertarOrdenado(tLista &lista, str3 nroVue, int posArchivo) {
+    sNodo* nuevo = new sNodo;
+    strcpy(nuevo->info.nroVue, nroVue);
+    nuevo->info.posArchivo = posArchivo;
+    nuevo->sig = NULL;
+    
+    // Si la lista está vacía o el nuevo elemento va al principio
+    if (lista == NULL || strcmp(nroVue, lista->info.nroVue) < 0) {
+        nuevo->sig = lista;
+        lista = nuevo;
+        return;
+    }
+    
+    // Buscar la posición correcta
+    sNodo* actual = lista;
+    while (actual->sig != NULL && strcmp(actual->sig->info.nroVue, nroVue) < 0) {
+        actual = actual->sig;
+    }
+    
+    nuevo->sig = actual->sig;
+    actual->sig = nuevo;
 }
+
+int BuscarAeropuerto(tvrAerop vrAerop, int cantAerop, str3 codIATA) {
+    int inicio = 0, fin = cantAerop - 1, medio;
+    
+    while (inicio <= fin) {
+        medio = (inicio + fin) / 2;
+        int comp = strcmp(vrAerop[medio].codIATA, codIATA);
+        
+        if (comp == 0) {
+            return medio;  // Encontrado
+        } else if (comp < 0) {
+            inicio = medio + 1;
+        } else {
+            fin = medio - 1;
+        }
+    }
+    return -1;  // No encontrado
+}
+
+void ProcVuelos(FILE* &archivoVuelos, tvrAerop vrAerop, int cantAerop) {
+    sVue vuelo;
+    int posicion = 0;
+    str3 aerSal, aerLlega, nroVue;
+    
+    // Leer cada vuelo del archivo
+    while (fread(&vuelo, sizeof(sVue), 1, archivoVuelos) == 1) {
+        // Obtener codIATA del aeropuerto de origen del nroVuelo
+        convertirNroVuelo(vuelo.idVue, aerSal, aerLlega, nroVue);
+        
+        // Localizar el aeropuerto de salida en vrAerop
+        int posAerop = BuscarAeropuerto(vrAerop, cantAerop, aerSal);
+        
+        if (posAerop != -1) {
+            // Convertir el ptr a lista y insertar el vuelo ordenado
+            tLista* listaVuelos = (tLista*)&(vrAerop[posAerop].ptr);
+            InsertarOrdenado(*listaVuelos, nroVue, posicion);
+        }
+        
+        posicion++;
+    }
+}
+
 void ConsultasVuelos() {
     //
 }
@@ -179,17 +248,25 @@ void test(){
 }
 
 int main() {
-    FILE* archivoAeropuertos = fopen("aeropuertos.dat", "rb");
-    FILE* archivoVuelos = fopen("vuelos.dat", "rb");
-    FILE* archivoConsultas = fopen("consultas.dat", "rb");
+    FILE* archivoAeropuertos;
+    FILE* archivoVuelos;
+    FILE* archivoConsultas;
     tvrAerop vrAerop;
+    int cantAerop = 0;
 
-    Abrir (archivoAeropuertos, archivoVuelos, archivoConsultas);
-    ProcAeropuertos (archivoAeropuertos, vrAerop);
+    Abrir(archivoAeropuertos, archivoVuelos, archivoConsultas);
+    
+    // Procesar aeropuertos y obtener la cantidad real
+    ProcAeropuertos(archivoAeropuertos, vrAerop);
+    
+    
+    ProcVuelos(archivoVuelos, vrAerop, CANT_AEROP);
 
-    ProcVuelos (  );
-    ConsultasVuelos (  );
-    ListVueAeropSld ( );
-    Cerrar (archivoAeropuertos, archivoVuelos, archivoConsultas);
+    
+
+    ConsultasVuelos();
+    ListVueAeropSld();
+    
+    Cerrar(archivoAeropuertos, archivoVuelos, archivoConsultas);
     return 0;
 }
