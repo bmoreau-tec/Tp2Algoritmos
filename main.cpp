@@ -228,9 +228,35 @@ void ProcVuelos(FILE* &archivoVuelos, tvrAerop vrAerop, int cantAerop) {
     }
 }
 
-void ConsultasVuelos() {
-    //
+void ConsultasVuelos(ifstream &Cons, ifstream &Vue, tvrIndVue vrIndVue, tvrAerop vrAerop, short cantVue, short &diaHoy) {
+    str9   nroVue;
+    short  posAeropOrig, posAeropDest;
+    sVue   rVue;
+    str3   codAeropOrig, codAeropDest;
+
+
+        //Hacer la siguiente variable global, queda pendiente
+    const char* meses[] = {"", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    
+    int year, mes, dia, diaSem;
+    GetDate(year, mes, dia, diaSem);
+
+    cout << "Consultas de vuelos del " << dia << " de " << meses[mes] << " de " << year << endl;
+    // - - -
+    freopen("Vuelos.txt","w",stdout);
+    cout << "NroVue.   Ciu.Orig.       Nom.Aerop.Orig.";
+    while (LeerCons(Cons,nroVue)) {
+        Vue.seekg(BusBinVec(vrIndVue,nroVue,cantVue) * 59); // tamaño de la linea, no se si es 59, 58 o 60
+        LeerVuelos(Vue,rVue);
+        strcpy(codAeropOrig,SubCad(nroVue,0,2));
+        strcpy(codAeropDest,SubCad(nroVue,6,8));
+        posAeropOrig = BusBinVec(vrAerop,codAeropOrig,CANT_AEROP);
+        posAeropDest = BusBinVec(vrAerop,codAeropDest,CANT_AEROP);
+        EmiteLinDet(rVue,vrAerop[posAeropOrig].nomAerop, vrAerop[posAeropOrig].ciudad,vrAerop[posAeropDest].nomAerop, vrAerop[posAeropDest].ciudad,diaAct); //estaba en el recu, hay q copiarlo
+  }
+  cout << "- - - - -" << endl;
 }
+
 void ListVueAeropSld() {
     //
 }
@@ -269,4 +295,5 @@ int main() {
     
     Cerrar(archivoAeropuertos, archivoVuelos, archivoConsultas);
     return 0;
+
 }
